@@ -12,8 +12,10 @@ public class ContaFilter {
 
     private String descricao;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataVencimentoDe;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataVencimentoAte;
 
     private LocalDate dataPagamentoDe;

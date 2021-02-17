@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,6 +42,10 @@ public class PessoaService {
         }
 
         return pessoaSalva;
+    }
+
+    public List<Pessoa> buscaTodasAsPessoas(){
+        return pessoaRepository.findAll();
     }
 
 

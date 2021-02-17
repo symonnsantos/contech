@@ -1,4 +1,4 @@
-package com.symonn.contech.repository.query;
+package com.symonn.contech.repository.query.conta;
 
 import com.symonn.contech.model.Conta;
 import com.symonn.contech.repository.filter.ContaFilter;
