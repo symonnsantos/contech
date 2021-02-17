@@ -19,8 +19,8 @@ public class Usuario {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "user", length = 100)
-    private String user;
+    @Column(name = "usuario", length = 100)
+    private String usuario;
 
     @Column(name = "senha", length = 100)
     private String senha;
