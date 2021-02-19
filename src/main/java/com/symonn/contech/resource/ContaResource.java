@@ -6,6 +6,7 @@ import com.symonn.contech.repository.ContaRepository;
 import com.symonn.contech.repository.filter.ContaFilter;
 import com.symonn.contech.repository.projection.ResumoConta;
 import com.symonn.contech.service.ContaService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -33,8 +34,20 @@ public class ContaResource {
     private ApplicationEventPublisher publisher;
 
     @PostMapping
-    public ResponseEntity<Conta> criar(@Valid @RequestBody Conta conta, HttpServletResponse response){
-        return ResponseEntity.status(HttpStatus.CREATED).body(contaRepository.save(conta));
+    public void criar(@Valid @RequestBody Conta conta, HttpServletResponse response){
+        if(conta.getParcelas() > 1){
+            int nrParcelas = conta.getParcelas();
+
+            for (int i = conta.getParcelas(); i >= 1 ; i--) {
+                Conta contaSalva = new Conta();
+                BeanUtils.copyProperties(conta, contaSalva, "id");
+                contaSalva.setParcelas(nrParcelas);
+                ResponseEntity.status(HttpStatus.CREATED).body(contaRepository.save(contaSalva));
+                nrParcelas--;
+            }
+        } else {
+            ResponseEntity.status(HttpStatus.CREATED).body(contaRepository.save(conta));
+        }
     }
 
     @GetMapping

@@ -38,6 +38,7 @@ public class Pessoa {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "pessoa")
+//    @OneToMany(mappedBy = "pessoa")
+    @OneToMany
     private List<Conta> contas;
 }

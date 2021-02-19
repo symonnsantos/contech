@@ -1,7 +1,6 @@
 package com.symonn.contech.service;
 
 import com.symonn.contech.model.Conta;
-import com.symonn.contech.model.Pessoa;
 import com.symonn.contech.model.TipoConta;
 import com.symonn.contech.repository.ContaRepository;
 import org.springframework.beans.BeanUtils;

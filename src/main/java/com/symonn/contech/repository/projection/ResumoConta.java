@@ -15,5 +15,6 @@ public class ResumoConta {
     private BigDecimal valor;
     private LocalDate dataVencimento;
     private LocalDate dataPagamento;
+    private LocalDate dataDaQuitacao;
     private boolean pago;
 }

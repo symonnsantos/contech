@@ -51,6 +51,7 @@ public class ContaRepositoryImpl implements ContaRepositoryQuery {
                 , root.get("valor")
                 , root.get("dataVencimento")
                 , root.get("dataPagamento")
+                , root.get("dataDaQuitacao")
                 , root.get("pago")
         ));
 
@@ -83,6 +84,12 @@ public class ContaRepositoryImpl implements ContaRepositoryQuery {
         if(contaFilter.getDataPagamento() != null){
             predicates.add(
                     builder.equal(root.get("dataPagamento"), contaFilter.getDataPagamento()));
+        }
+
+        //Filtro data da quitação
+        if(contaFilter.getDataDaQuitacao() != null){
+            predicates.add(
+                    builder.equal(root.get("dataDaQuitacao"), contaFilter.getDataDaQuitacao()));
         }
 
         //Filtro data de vencimento - de => até

@@ -37,12 +37,13 @@ public class Conta {
     private int parcelas;
 
     @Column(name = "data_pagamento")
-//    @JsonFormat(pattern =  "dd/MM/yyyy")
     private LocalDate dataPagamento;
 
     @Column(name = "data_vencimento")
-//    @JsonFormat(pattern =  "dd/MM/yyyy")
     private LocalDate dataVencimento;
+
+    @Column(name = "data_da_quitacao")
+    private LocalDate dataDaQuitacao;
 
     @Column(name = "observacao", length = 100)
     private String observacao;
@@ -52,9 +53,8 @@ public class Conta {
     @Column(name = "tipo_conta", length = 10, nullable = false)
     private TipoConta tipoConta;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_pessoa", nullable = false)
-    private Pessoa pessoa;
+//    @ManyToOne
+//    @JoinColumn(name = "id_pessoa", nullable = false)
+//    private Pessoa pessoa;
 
 }
