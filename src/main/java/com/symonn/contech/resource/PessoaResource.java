@@ -5,6 +5,7 @@ import com.symonn.contech.repository.PessoaRepository;
 import com.symonn.contech.repository.filter.PessoaFilter;
 import com.symonn.contech.repository.query.pessoa.PessoaRepositoryImp;
 import com.symonn.contech.service.PessoaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
@@ -37,14 +38,14 @@ public class PessoaResource {
 
     @PostMapping
     public ResponseEntity<Pessoa> criar(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response){
-        Pessoa pessoaSalva = pessoaRepository.save(pessoa);
-        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaSalva);
+        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaRepository.save(pessoa));
     }
 
     @GetMapping
     public List<Pessoa> buscaTodos(){
         return pessoaService.buscaTodasAsPessoas();
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Pessoa> buscarPeloCodigo(@PathVariable Long id){
@@ -59,9 +60,9 @@ public class PessoaResource {
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<Pessoa> atualizar(@PathVariable Long id, @Valid @RequestBody Pessoa pessoa){
-        Pessoa pessoaSalva = pessoaService.atualizar(id, pessoa);
-        return ResponseEntity.ok(pessoaSalva);
+        return ResponseEntity.ok(pessoaService.atualizar(id, pessoa));
     }
 
     @PutMapping("/{id}/ativo")
@@ -69,7 +70,5 @@ public class PessoaResource {
     public void setarAtivo(@PathVariable Long id, @RequestBody Boolean ativo){
         pessoaService.atualizarPropAtivo(id, ativo);
     }
-
-
 
 }

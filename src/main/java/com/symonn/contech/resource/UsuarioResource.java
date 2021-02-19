@@ -30,8 +30,7 @@ public class UsuarioResource {
 
     @PostMapping
     public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario, HttpServletResponse response){
-    Usuario usuarioSalvo = usuarioRepository.save(usuario);
-    return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuario));
     }
 
     @GetMapping
@@ -53,8 +52,7 @@ public class UsuarioResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @Valid @RequestBody Usuario usuario){
-        Usuario usuarioSalvo = usuarioService.atualizar(id, usuario);
-        return ResponseEntity.ok(usuarioSalvo);
+        return ResponseEntity.ok(usuarioService.atualizar(id, usuario));
     }
 
     @PutMapping("/{id}/ativo")

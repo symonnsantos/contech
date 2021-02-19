@@ -6,6 +6,7 @@ import com.symonn.contech.repository.projection.ResumoConta;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,9 +48,11 @@ public class ContaRepositoryImpl implements ContaRepositoryQuery {
         criteria.select(builder.construct(ResumoConta.class
                 , root.get("id")
                 , root.get("descricao")
+                , root.get("valor")
                 , root.get("dataVencimento")
                 , root.get("dataPagamento")
-                , root.get("pessoa").get("nome")));
+                , root.get("pago")
+        ));
 
         Predicate[] predicates = criarRestricoes(contaFilter, builder, root);
         criteria.where(predicates);
@@ -57,7 +60,7 @@ public class ContaRepositoryImpl implements ContaRepositoryQuery {
         TypedQuery<ResumoConta> query = entityManager.createQuery(criteria);
         adicionarRestricoesDePaginacao(query, pageable);
 
-        return new PageImpl<ResumoConta>(query.getResultList(), pageable, (Long) total(contaFilter));
+        return new PageImpl<ResumoConta>(query.getResultList(), pageable, total(contaFilter));
     }
 
     private void adicionarRestricoesDePaginacao(TypedQuery<?> query, Pageable pageable) {
@@ -72,17 +75,40 @@ public class ContaRepositoryImpl implements ContaRepositoryQuery {
     private Predicate[] criarRestricoes(ContaFilter contaFilter, CriteriaBuilder builder, Root<Conta> root) {
         List<Predicate> predicates = new ArrayList<>();
 
+        if (StringUtils.isNotEmpty(contaFilter.getDescricao())) {
+            predicates.add(builder.like(builder.lower(root.get("descricao")), "%" + contaFilter.getDescricao().toLowerCase() + "%"));
+        }
+
+        //Filtro data de pagamento
+        if(contaFilter.getDataPagamento() != null){
+            predicates.add(
+                    builder.equal(root.get("dataPagamento"), contaFilter.getDataPagamento()));
+        }
+
+        //Filtro data de vencimento - de => até
+        if(contaFilter.getDataVencimentoDe() != null){
+            predicates.add(
+                    builder.greaterThanOrEqualTo(root.get("dataVencimento"), contaFilter.getDataVencimentoDe()));
+        }
+        if(contaFilter.getDataVencimentoAte() != null){
+            predicates.add(
+                    builder.lessThanOrEqualTo(root.get("dataVencimento"), contaFilter.getDataVencimentoAte()));
+        }
+
         return predicates.toArray(new Predicate[predicates.size()]);
     }
 
-    private Object total(ContaFilter contaFilter) {
+    private Long total(ContaFilter contaFilter) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery criteria = builder.createQuery(Long.class);
+        CriteriaQuery<Long> criteria = builder.createQuery(Long.class);
         Root<Conta> root = criteria.from(Conta.class);
 
         Predicate[] predicates = criarRestricoes(contaFilter, builder, root);
         criteria.where(predicates);
-        return entityManager.createQuery(criteria).getResultList();
+
+        criteria.select(builder.count(root));
+
+        return entityManager.createQuery(criteria).getSingleResult();
     }
 
 }

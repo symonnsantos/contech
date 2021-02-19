@@ -1,17 +1,19 @@
 package com.symonn.contech.repository.projection;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Builder @Getter @Setter
+@Getter @Setter @AllArgsConstructor
 public class ResumoConta {
 
     private Long id;
     private String descricao;
+    private BigDecimal valor;
     private LocalDate dataVencimento;
     private LocalDate dataPagamento;
-    private String pessoa;
+    private boolean pago;
 }

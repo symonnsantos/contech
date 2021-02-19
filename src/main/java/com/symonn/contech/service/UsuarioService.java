@@ -31,7 +31,7 @@ public class UsuarioService {
     public Usuario atualizar(Long id, Usuario usuario){
         Optional<Usuario> usuarioSalvo = usuarioRepository.findById(id);
 
-        BeanUtils.copyProperties(usuario, usuarioSalvo, "id");
+        BeanUtils.copyProperties(usuario, usuarioSalvo.get(), "id");
         return usuarioRepository.save(usuarioSalvo.get());
     }
 

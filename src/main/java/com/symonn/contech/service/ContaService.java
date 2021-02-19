@@ -20,24 +20,6 @@ public class ContaService {
     @Autowired
     private ContaRepository contaRepository;
 
-    public void cadastrarConta(Conta conta, String descricao, BigDecimal valor,
-                               Boolean pago, int parcelas, LocalDate dataPagamento,
-                               LocalDate dataVencimento, String observacao,
-                               TipoConta tipoContaEnum, Pessoa pessoa){
-        Conta contaSalva = new Conta();
-
-        contaSalva.setDataVencimento(dataVencimento);
-        contaSalva.setDescricao(descricao);
-        contaSalva.setValor(valor);
-        contaSalva.setPago(pago);
-        contaSalva.setObservacao(observacao);
-        contaSalva.getPessoa().setId(pessoa.getId());
-        contaSalva.setDataPagamento(dataPagamento);
-        contaSalva.setTipoConta(tipoContaEnum);
-
-        contaRepository.save(contaSalva);
-    }
-
     public Conta atualizar(Long id, Conta conta){
         Optional<Conta> contaSalva = buscarContaPeloId(id);
 
@@ -82,4 +64,7 @@ public class ContaService {
         return contas;
     }
 
+    public List<Conta> buscaTodas() {
+        return contaRepository.findAll();
+    }
 }
