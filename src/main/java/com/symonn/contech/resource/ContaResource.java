@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,13 +38,19 @@ public class ContaResource {
     public void criar(@Valid @RequestBody Conta conta, HttpServletResponse response){
         if(conta.getParcelas() > 1){
             int nrParcelas = conta.getParcelas();
+            LocalDate dataP = conta.getDataPagamento();
+            LocalDate dataV = conta.getDataVencimento();
 
             for (int i = conta.getParcelas(); i >= 1 ; i--) {
                 Conta contaSalva = new Conta();
                 BeanUtils.copyProperties(conta, contaSalva, "id");
                 contaSalva.setParcelas(nrParcelas);
+                contaSalva.setDataPagamento(dataP);
+                contaSalva.setDataVencimento(dataV);
                 ResponseEntity.status(HttpStatus.CREATED).body(contaRepository.save(contaSalva));
                 nrParcelas--;
+                dataP = dataP.plusMonths(1);
+                dataV = dataV.plusMonths(1);
             }
         } else {
             ResponseEntity.status(HttpStatus.CREATED).body(contaRepository.save(conta));
