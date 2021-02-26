@@ -13,7 +13,6 @@ public class Formatadores {
 
     public String formataData(LocalDate data){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        ;
         return (formatter.format(data)).toString();
     }
 
@@ -21,6 +20,4 @@ public class Formatadores {
         DecimalFormat decFormat = new DecimalFormat("'R$ '0.00##");
         return (decFormat.format(valor)).toString();
     }
-
-
 }
