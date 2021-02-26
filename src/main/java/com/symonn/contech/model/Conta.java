@@ -49,7 +49,7 @@ public class Conta {
     private String observacao;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING )
     @Column(name = "tipo_conta", length = 10, nullable = false)
     private TipoConta tipoConta;
 

@@ -36,7 +36,7 @@ public class EmailResource {
         List<Conta> contas = contaRepository.findAll();
 
         for (Conta conta : contas) {
-            if(conta.getDataPagamento().equals(LocalDate.now())){
+            if((conta.getDataPagamento().equals(LocalDate.now())) && !(conta.getPago())){
                 message.setSubject("Ei, você tem contas a pagar hoje!");
 
                 builder.append("Conta : " + conta.getDescricao());
@@ -48,8 +48,7 @@ public class EmailResource {
         }
 
         message.setText(builder.toString());
-//        message.setText("teste");
-        message.setTo("nobrega.jus@gmail.com");
+        message.setTo("symonn.santos@gmail.com");
         message.setFrom("contech.java@gmail.com");
 
         try {
