@@ -1,4 +1,4 @@
-package com.symonn.contech.component;
+package com.symonn.contech.util;
 
 import com.symonn.contech.resource.EmailResource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class VerificadorDiario {
     private final long MINUTO = SEGUNDO * 60;
     private final long HORA = MINUTO * 60;
 
-    @Scheduled(cron = "0 0 12")
+    @Scheduled(fixedDelay = HORA * 12)
     public void verificaPorHora() {
         emailResource.sendMail();
     }
