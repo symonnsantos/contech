@@ -37,35 +37,19 @@ public class EmailResource {
 
     @RequestMapping(path = "/email-send", method = RequestMethod.GET)
     public String sendMail() {
-        DateTimeFormatter formataData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DecimalFormat formataMoeda = new DecimalFormat("'R$ ' 0.##");
         StringBuilder builder = new StringBuilder();
         SimpleMailMessage message = new SimpleMailMessage();
         List<Conta> contas = contaRepository.findAll();
-
-        builder.append("<table border=\"1\"> \n");
-        builder.append("</thead> \n <tr> \n");
-        builder.append("<th>Descrição</th> \n");
-        builder.append("<th>Valor</th> \n");
-        builder.append("<th>Data vencimento</th> \n");
-        builder.append("</tr> \n </thead> \n");
-
-        builder.append("<tbody> \n");
 
         for (Conta conta : contas) {
             if((conta.getDataPagamento().equals(LocalDate.now())) && !(conta.getPago())){
                 message.setSubject("Ei, você tem contas a pagar hoje!");
 
-                builder.append("<tr> \n");
-                builder.append("<td> " + conta.getDescricao() + " </td> \n");
-                builder.append("<td> " + formatar.formataReal(conta.getValor()) + " </td> \n");
-                builder.append("<td> " + formatar.formataData(conta.getDataVencimento()) + " </td> \n");
-                builder.append("</tr> \n");
+                builder.append("Descrição: " + conta.getDescricao() + " | ");
+                builder.append("Valor: " + formatar.formataReal(conta.getValor()) + " | ");
+                builder.append("Data vencimento " + formatar.formataData(conta.getDataVencimento()) + "\n");
             }
         }
-
-        builder.append("<tbody> \n");
-        builder.append("</tfoot> \n </table>");
 
         message.setText(builder.toString());
         message.setTo("symonn.santos@gmail.com");
