@@ -6,8 +6,11 @@ vencimento e uma de pagamento. O sistema se encarrega de fazer uma verificação
 todas as contas a pagar no dia em curso.
 
 Tecnologias utilizadas:
-- Spring Framework;
-- Angular (Em Construção);
+
+- Java 8;
+- Spring Framework (Data, Security,Web);
+- Lombok;
+- Angular (CLI);
 - MySQL;
 
 Sistema open source, pondendo ser adaptado para diferentes fins e necessidades.
