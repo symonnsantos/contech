@@ -10,7 +10,7 @@ Tecnologias utilizadas:
 - Java 8;
 - Spring Framework (Data, Security,Web);
 - Lombok;
-- Angular (CLI);
+- Angular (CLI) (EM CONSTRUÇÃO);
 - MySQL;
 
-Sistema open source, pondendo ser adaptado para diferentes fins e necessidades.
+Sistema open source, podendo ser adaptado para diferentes fins e necessidades.
