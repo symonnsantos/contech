@@ -5,6 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0465462c-2a39-41da-94e6-515336823a6f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/Contech.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/conta/conta.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/conta/conta.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/conta/conta.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/conta/conta.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/pessoa/pessoa.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/pessoa/pessoa.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/pessoa/pessoa.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/pessoa/pessoa.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/usuario/usuario.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/usuario/usuario.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/usuario/usuario.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/app/pages/usuario/usuario.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
